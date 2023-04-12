@@ -46,4 +46,4 @@ sonar {
 ./gradlew sonar \
   -Dsonar.projectKey=rms-gateway \
   -Dsonar.host.url=http://20.124.136.37 \
-  -Dsonar.login=sqp_2c93babda0f035b4b42f38e223950ef2e0ca2962
+  -Dsonar.login=sqp_fdaf586de616395c2db58177f6a4defb0421bad9
