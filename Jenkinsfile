@@ -1,5 +1,8 @@
-node {
-
+pipeline {
+  agent any
+  environment {
+    scannerHome = tool 'SonarQube Scanner'
+  }
   stages {
     stage('Checkout') {
       steps {
@@ -19,6 +22,5 @@ node {
       }
     }
   }
-}
 }
 
