@@ -5,7 +5,7 @@ plugins {
 sonarqube {
   properties {
     property "sonar.host.url", "http://20.124.136.37/"
-    property "sonar.login", "sqp_fdaf586de616395c2db58177f6a4defb0421bad9"
+    property "sonar.login", "sqa_698de6835dc36813a3893627d0ac74a926658bba"
   }
 }
 
