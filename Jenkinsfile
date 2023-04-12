@@ -1,10 +1,15 @@
 node {
-  stage('SCM') {
+    stage 'Checkout'
+
     checkout scm
-  }
-  stage('SonarQube Analysis') {
-    withSonarQubeEnv() {
-      sh "./gradlew sonar"
+
+    stage 'Gradle Static Analysis'
+    withSonarQubeEnv {
+        sh "./gradlew clean sonarqube"
     }
-  }
+
+    stage 'Maven Static Analysis'
+    withSonarQubeEnv {
+        sh "./mvnw -Pcoverage-per-test clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar"
+    }
 }
