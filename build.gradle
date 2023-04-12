@@ -32,3 +32,13 @@ wrapper {
     gradleVersion = "7.3.3"
     distributionType = Wrapper.DistributionType.ALL
 }
+
+plugins {
+  id "org.sonarqube" version "3.5.0.2730"
+}
+
+sonar {
+  properties {
+    property "sonar.projectKey", "rms-gateway"
+  }
+}
