@@ -2,17 +2,9 @@ node {
   stage('SCM') {
     checkout scm
   }
-  stage('Sonarqube') {
-    environment {
-        scannerHome = tool 'SonarQubeScanner'
+  stage('SonarQube Analysis') {
+    withSonarQubeEnv() {
+      sh "./gradlew sonar"
     }
-    steps {
-        withSonarQubeEnv('sonarqube') {
-            sh "${scannerHome}/bin/sonar-scanner"
-        }
-        timeout(time: 10, unit: 'MINUTES') {
-            waitForQualityGate abortPipeline: true
-        }
-    }
-}
+  }
 }
