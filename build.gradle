@@ -1,41 +1,9 @@
-apply plugin: 'java'
-apply plugin: 'maven-publish'
-apply plugin: 'org.sonarqube'
-
-group = 'com.github.jitpack'
-version = '2.0'
-
-sourceCompatibility = 1.8 // java 8
-targetCompatibility = 1.8
-
-sonarqube {
-    properties {
-        property "sonar.projectName", "rms-gateway"
-        property "sonar.projectKey", "sqp_fdaf586de616395c2db58177f6a4defb0421bad9"
-    }
-}
-repositories {
-  mavenCentral()
+plugins {
+  id "org.sonarqube" version "3.5.0.2730"
 }
 
-dependencies {
-  implementation 'com.google.guava:guava:29.0-jre'
-}
-
-java {
-	withSourcesJar()
-	withJavadocJar()
-}
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-		from components.java
-        }
-    }
-}
-
-wrapper {
-    gradleVersion = "7.3.3"
-    distributionType = Wrapper.DistributionType.ALL
+sonar {
+  properties {
+    property "sonar.projectKey", "rms-gateway"
+  }
 }
