@@ -1,6 +1,6 @@
 node {
   stage('SCM') {
-    git 'https://github.com/graj1/gradle-simple'
+    checkout scm
   }
   stage('SonarQube Analysis') {
     withSonarQubeEnv() {
