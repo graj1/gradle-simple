@@ -1,25 +1,10 @@
-pipeline {
-  agent any
-  environment {
-    scannerHome = tool 'SonarQube Scanner'
+node {
+  stage('SCM') {
+    checkout scm
   }
-  stages {
-    stage('Checkout') {
-      steps {
-        checkout scm
-      }
-    }
-    stage('Build') {
-      steps {
-        sh './gradlew clean build'
-      }
-    }
-    stage('SonarQube analysis') {
-      steps {
-        withSonarQubeEnv('SonarQube') {
-          sh "${scannerHome}/bin/sonar-scanner"
-        }
-      }
+  stage('SonarQube Analysis') {
+    withSonarQubeEnv('sonarqube') {
+      sh "./gradlew sonarqube"
     }
   }
 }
